@@ -1,0 +1,17 @@
+{
+  "name": "NodeDb",
+  "version": "0.0.0",
+  "description": "NodeDb",
+  "main": "app.js",
+  "author": {
+    "name": "Coldfire",
+    "email": ""
+  },
+  "dependencies": {
+    "coffee-script": "1.7.1",
+    "mongoose": "3.8.13"
+  },
+  "devDependencies": {
+
+  }
+}
