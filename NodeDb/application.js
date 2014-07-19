@@ -1,51 +1,42 @@
-// Some general UI pack related JS
+(function ($)
+{
+	$(function ()
+	{
 
-$(function () {
-    // Custom selects
-    $("select").dropkick();
-});
+		// Todo list
+		$(".todo").on('click', 'li', function ()
+		{
+			$(this).toggleClass("todo-done");
+		});
 
-$(document).ready(function() {
-    // Todo list
-    $(".todo li").click(function() {
-        $(this).toggleClass("todo-done");
-    });
+		// Custom Selects
+		$("#selectlist").selectpicker({ style: 'btn-primary', menuStyle: 'dropdown-inverse' });
 
-    // Init tooltips
-    $("[data-toggle=tooltip]").tooltip("show");
+		// Tooltips
+		$("[data-toggle=tooltip]").tooltip("show");
 
-    // Init tags input
-    $("#tagsinput").tagsInput();
+		// Focus state for append/prepend inputs
+		$('.input-group').on('focus', '.form-control', function ()
+		{
+			$(this).closest('.input-group, .form-group').addClass('focus');
+		}).on('blur', '.form-control', function ()
+		{
+			$(this).closest('.input-group, .form-group').removeClass('focus');
+		});
 
-    // Init jQuery UI slider
-    $("#slider").slider({
-        min: 1,
-        max: 5,
-        value: 2,
-        orientation: "horizontal",
-        range: "min",
-    });
+		$(".btn-group").on('click', "a", function ()
+		{
+			$(this).siblings().removeClass("active").end().addClass("active");
+		});
 
-    // JS input/textarea placeholder
-    $("input, textarea").placeholder();
+		// Disable link clicks to prevent page scrolling
+		$(document).on('click', 'a[href="#fakelink"]', function (e)
+		{
+			e.preventDefault();
+		});
 
-    // Make pagination demo work
-    $(".pagination a").click(function() {
-        if (!$(this).parent().hasClass("previous") && !$(this).parent().hasClass("next")) {
-            $(this).parent().siblings("li").removeClass("active");
-            $(this).parent().addClass("active");
-        }
-    });
+		window.prettyPrint && prettyPrint();
 
-    $(".btn-group a").click(function() {
-        $(this).siblings().removeClass("active");
-        $(this).addClass("active");
-    });
+	});
 
-    // Disable link click not scroll top
-    $("a[href='#']").click(function() {
-        return false
-    });
-
-});
-
+})(jQuery);
