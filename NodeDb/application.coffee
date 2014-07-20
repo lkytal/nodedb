@@ -5,9 +5,9 @@ JSON_Data = null
 addList = () ->
 	type = $('#type')[0].value
 	list = ( item[type] for item in JSON_Data )
+	list = ["1-1", "1"]
 	console.log list
-	
-	$('#index').typeahead "source", list
+	$('#index').typeahead { "source" : list }
 
 jQuery.getJSON 'data.json', (data) ->
 	JSON_OK = 1
