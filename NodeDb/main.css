@@ -1,0 +1,65 @@
+body {
+	font-family: Microsoft YaHei, Arial, 黑体;
+	background-size: cover;
+}
+
+.center {
+	padding: 50px;
+	text-align: center;
+}
+
+.footer-banner a
+{
+	text-decoration: none;
+}
+
+.col-xs-offset-lt {
+	margin-left: 4.1%;
+}
+
+.padding-2 {
+	padding: 3%;
+}
+
+.demo-headline {
+	padding: 73px 0 110px;
+	text-align: center;
+}
+
+.demo-logo {
+	font: 900 90px/100px Microsoft YaHei, Arial, sans-serif;
+	letter-spacing: -2px;
+	margin: 10px 0;
+}
+
+	.demo-logo small {
+		color: rgba(52, 73, 94, 0.3);
+		display: block;
+		font-size: 22px;
+		letter-spacing: 0;
+		padding-top: 5px;
+	}
+
+@media (min-width: 768px) {
+	.container {
+		width: 750px;
+	}
+}
+
+@media (min-width: 992px) {
+	.container {
+		width: 90%;
+	}
+}
+
+@media (min-width: 1200px) {
+	.container {
+		width: 80%;
+	}
+}
+
+@media (min-width: 1600px) {
+	.container {
+		width: 80%;
+	}
+}
