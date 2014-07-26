@@ -14,7 +14,7 @@ body {
 }
 
 .col-xs-offset-lt {
-	margin-left: 4.1%;
+	padding: 0px 15px !important;
 }
 
 .padding-2 {
@@ -48,7 +48,7 @@ body {
 
 @media (min-width: 992px) {
 	.container {
-		width: 90%;
+		width: 85%;
 	}
 }
 

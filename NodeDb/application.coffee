@@ -3,17 +3,15 @@ JSON_OK = 0
 JSON_Data = null
 
 addList = () ->
-	type = $('#type')[0].value
-	list = ( item[type] for item in JSON_Data )
-	list = ["1-1", "1"]
-	console.log list
-	$('#index').typeahead { "source" : list }
+	#type = $('#type')[0].value
+	#list = ( item[type] for item in JSON_Data )
+	
+	#$('#index').typeahead { source: list}
 
 jQuery.getJSON 'data.json', (data) ->
 	JSON_OK = 1
 	JSON_Data = data
 	addList()
-	$('#search').click() if $('#index')[0].value
 	
 setTr = (item) ->
 	"""
@@ -32,8 +30,8 @@ addResult = () ->
 	type = $('#type')[0].value
 	index = $('#index')[0].value
 	
-	$('#info, #space').addClass('hide')
-	$('#tablediv').removeClass 'hide'
+	$('#info, #space').addClass('hidden')
+	$('#tablediv').removeClass 'hidden'
 	
 	results = """
 		<tbody>
@@ -47,7 +45,7 @@ addResult = () ->
 		</tbody>
 		"""
 	
-	results += setTr item for item in JSON_Data when item[type].match index, "gi"
+	results += setTr item for item in JSON_Data when item[type].toLowerCase().match index.toLowerCase()
 	$('#results').empty().append results
 	
 	$('body,html').animate({ scrollTop: $('#tablediv')[0].offsetTop }, 400);
@@ -56,7 +54,7 @@ Run = ($) ->
 	$('body,html').animate({ scrollTop: 0 }, 300);
 
 	$('#search').on 'click', (event) ->
-		$('#info').removeClass('hide')		
+		$('#info').removeClass('hidden')		
 		addResult() if JSON_OK
 		
 	$('#type ~ div li').on 'click', (event) ->
@@ -64,7 +62,7 @@ Run = ($) ->
 		
 Setup = ($) ->
 	$ ()->
-		$('#type').removeClass('hide')
+		$('#type').removeClass('hidden')
 		#Custom Selects
 		$("select.select-list").selectpicker { style: 'btn-primary', menuStyle: 'dropdown-inverse' }
 
