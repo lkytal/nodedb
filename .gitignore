@@ -30,3 +30,5 @@ $tf*/
 /NodeDb/node_modules
 /NodeDb/assets
 /NodeDb/bower_components
+
+.localhistory/

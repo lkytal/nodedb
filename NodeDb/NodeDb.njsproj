@@ -36,6 +36,7 @@
     <Compile Include="application.js" />
     <Content Include="404.html" />
     <Content Include="app.coffee" />
+    <Content Include="upload.html" />
     <Content Include="web.coffee" />
     <Content Include="application.coffee" />
     <Content Include="data.json" />

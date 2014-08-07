@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang='zh-CN'>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name='author' content='lkytal'>
+	<link rel='shortcut icon' href='favicon.ico'>
+	<title>Chem Upload</title>
+
+	<link href='assets/css/bootstrap.min.css' rel='stylesheet'>
+	<link href="assets/css/flat-ui.css" rel="stylesheet">
+	<link href='main.css' rel='stylesheet'>
+
+	<!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+	<!--[if lt IE 9]>
+		<script src="assets/js/html5shiv.js"></script>
+		<script src="assets/js/respond.min.js"></script>
+	<![endif]-->
+	<!--[if lte IE 7]>
+		<link rel="stylesheet" type="text/css" href="assets/css/ie7.css">
+	<![endif]-->
+	<!--[if lte IE 6]>
+		<link rel="stylesheet" type="text/css" href="assets/css/ie6.css">
+	<![endif]-->
+</head>
+<body>
+	<div class="container">
+		<div class="center">
+			<img src="assets/images/illustrations/retina.png" class="xshide big-retina-illustration">
+
+			<h1 class="demo-logo">
+				Chem Finder
+				<small>Easy way to find what you want</small>
+			</h1>
+		</div>
+
+		<form class="form-horizontal" role="form" method="post" action="http://upload.qiniu.com" enctype="multipart/form-data">
+			<div class="form-group">
+				<label for="token" class="col-sm-2 control-label">Token</label>
+				<div class="col-sm-10">
+					<input type="test" readonly class="form-control" value="235tt93U09Fou752ETqgI6-KA0P-OL8U1pVBu_V2:MKc6KBYsdY6E7_um1j9_k_8V91U=:eyJzY29wZSI6ImNvbGRmaXJlOmRhdGEuanNvbiIsImRlYWRsaW5lIjoxNDA2Nzc3OTE5fQ==" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="key" class="col-sm-2 control-label">Key</label>
+				<div class="col-sm-10">
+					<input type="text" readonly class="form-control" name="key" value="data.json">
+				</div>
+			</div>
+			<div class="form-group hidden">
+				<label for="x:username" class="col-sm-2 control-label">UserName</label>
+				<div class="col-sm-10">
+					<input type="text" readonly class="form-control" name="x:username" value="">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="bucket" class="col-sm-2 control-label">File</label>
+				<div class="col-sm-8">
+					<input type="file" name="file" >
+				</div>
+				<div class="col-sm-2">
+					<button type="submit" class="btn btn-block btn-primary">Upload</button>
+				</div>
+			</div>
+		</form>
+	</div>
+
+	<br />
+	<br />
+
+	<footer>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-7 col-xs-4">
+					<h3 class="footer-title">Author</h3>
+					<p>
+						Design &amp; Support by <em>Coldfire</em>
+						<br />
+						CopyRight 2014+
+					</p>
+				</div>
+				<div class="col-md-5 col-xs-8">
+					<div class="footer-banner">
+						<h3 class="footer-title">Contact me</h3>
+						<ul>
+							<li>
+								<a href="#">Renren</a>
+							</li>
+							<li>
+								<a href="#">Email</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<script src="assets/js/jquery-1.8.3.min.js"></script>
+	<!--[if lte IE 6]>
+		<script type="text/javascript" src="assets/js/bootstrap-ie6.js"></script>
+	<![endif]-->
+</body>
+</html>

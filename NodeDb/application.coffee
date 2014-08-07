@@ -8,6 +8,8 @@ addList = () ->
 	
 	#$('#index').typeahead { source: list}
 
+# 'http://coldfire.qiniudn.com/data.json'
+
 jQuery.getJSON 'data.json', (data) ->
 	JSON_OK = 1
 	JSON_Data = data
@@ -19,8 +21,9 @@ setTr = (item) ->
 		<tr>
 			<td>#{item.Cid}</td>
 			<td>#{item.Name}</td>
-			<td>#{item.Formula.replace /(\d+)/, '<sub>$1</sub>'}</td>
+			<td>#{item.Formula.toUpperCase().replace /(\d+)/gi, '<sub>$1</sub>'}</td>
 			<td>#{item.MW}</td>
+			<td>#{item.Size}</td>
 			<td>#{item.Place}</td>
 		</tr>
 	</tbody>
@@ -40,7 +43,8 @@ addResult = () ->
 				<th>Name</th>
 				<th>Formula</th>
 				<th>MW</th>
-				<th>Place</th>			
+				<th>Size</th>
+				<th>Place</th>
 			</tr>
 		</tbody>
 		"""
@@ -48,21 +52,27 @@ addResult = () ->
 	results += setTr item for item in JSON_Data when item[type].toLowerCase().match index.toLowerCase()
 	$('#results').empty().append results
 	
-	$('body,html').animate({ scrollTop: $('#tablediv')[0].offsetTop }, 400);
+	$('body,html').animate({ scrollTop: $('#tablediv')[0].offsetTop }, 400)
+
+doSearch = () ->
+	$('#info').removeClass('hidden')
+	setTimeout doSearch, 400 if not JSON_OK
+	addResult()
 	
 Run = ($) ->
-	$('body,html').animate({ scrollTop: 0 }, 300);
+	$('body,html').animate({ scrollTop: 0 }, 300)
 
-	$('#search').on 'click', (event) ->
-		$('#info').removeClass('hidden')		
-		addResult() if JSON_OK
+	$('#search').on 'click', (event) -> doSearch()
 		
 	$('#type ~ div li').on 'click', (event) ->
 		setTimeout addList, 100
 		
 Setup = ($) ->
-	$ ()->
+	$ () ->
 		$('#type').removeClass('hidden')
+		$('#index').focus().on 'keydown', (event) ->
+			doSearch() if event.which == 13
+
 		#Custom Selects
 		$("select.select-list").selectpicker { style: 'btn-primary', menuStyle: 'dropdown-inverse' }
 
@@ -77,5 +87,6 @@ Setup = ($) ->
 
 		window.prettyPrint && prettyPrint()
 
+		Run jQuery
+
 Setup jQuery
-jQuery () -> Run jQuery
