@@ -38,7 +38,7 @@
 			<div class="form-group">
 				<label for="token" class="col-sm-2 control-label">Token</label>
 				<div class="col-sm-10">
-					<input type="test" readonly class="form-control" value="235tt93U09Fou752ETqgI6-KA0P-OL8U1pVBu_V2:MKc6KBYsdY6E7_um1j9_k_8V91U=:eyJzY29wZSI6ImNvbGRmaXJlOmRhdGEuanNvbiIsImRlYWRsaW5lIjoxNDA2Nzc3OTE5fQ==" />
+					<input type="test" readonly class="form-control" name="token" value="235tt93U09Fou752ETqgI6-KA0P-OL8U1pVBu_V2:llg4A2Low0LPyqDWt-jrHzs6Jk0=:eyJzY29wZSI6ImxreXRhbDpkYXRhLmpzb24iLCJkZWFkbGluZSI6MjI3MTUwODk4OH0=" />
 				</div>
 			</div>
 			<div class="form-group">
@@ -59,7 +59,7 @@
 					<input type="file" name="file" >
 				</div>
 				<div class="col-sm-2">
-					<button type="submit" class="btn btn-block btn-primary">Upload</button>
+					<button type="submit" id="upload" class="btn btn-block btn-primary">Upload</button>
 				</div>
 			</div>
 		</form>
@@ -96,6 +96,21 @@
 		</div>
 	</footer>
 	<script src="assets/js/jquery-1.8.3.min.js"></script>
+	<script>
+		function upload (e)
+		{
+			e.preventDefault();
+
+			$(this).ajaxSubmit({
+				success: function (data) {
+                	alert(data);
+            	}
+			});
+		}
+
+		//$('form').on('submit', upload);
+		//$('#upload').on('click', upload);
+	</script>
 	<!--[if lte IE 6]>
 		<script type="text/javascript" src="assets/js/bootstrap-ie6.js"></script>
 	<![endif]-->

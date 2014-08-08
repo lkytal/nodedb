@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang='zh-CN'>
 <head>
 	<meta charset="utf-8">
@@ -7,7 +7,7 @@
 	<link rel='shortcut icon' href='favicon.ico'>
 	<title>Chem Search</title>
 
-	<link href='assets/css/bootstrap.min.css' rel='stylesheet'>
+	<link href='assets/css/bootstrap-readable.css' rel='stylesheet'>
 	<link href="assets/css/flat-ui.css" rel="stylesheet">
 	<link href='main.css' rel='stylesheet'>
 
@@ -35,7 +35,7 @@
 			</h1>
 		</div>
 
-		<div class="row">
+		<div id="main" class="row">
 			<div class="col-md-4 col-xs-12">
 				<select id="type" class="selectpicker select-block select-list hidden">
 					<option value="Cid">Cid</option>
@@ -57,9 +57,48 @@
 			<br />
 		</div>
 
-		<div id="info" class="row hide">
-			<div class="alert alert-warning col-md-10 col-md-offset-1" role="alert">
-				<strong>Loading...</strong> Refresh if loading too long.
+		<div id="loadding" class="alert alert-dismissable alert-warning">
+			<button type="button" class="close" data-dismiss="alert">×</button>
+			<h4>Loading...</h4>
+			<p>Refresh if loading too long.</p>
+		</div>
+
+		<div id="loadErr" class="alert alert-dismissable alert-danger hidden">
+			<button type="button" class="close" data-dismiss="alert">×</button>
+			<h4>Load Error</h4>
+			<p>Cannot load data file, please refresh this page.</p>
+		</div>
+
+		<div id="info" class="alert alert-dismissable alert-success">
+			<button type="button" class="close" data-dismiss="alert">×</button>
+			<h4>Search Completed</h4>
+			<p id="rstnum">#NNN# result(s) found</p>
+		</div>
+
+		<div id="loadErrp" class="panel panel-danger hidden">
+			<div class="panel-heading">
+				<h3 class="panel-title">Load Error</h3>
+			</div>
+			<div class="panel-body">
+				Cannot load data file, please refresh this page.
+			</div>
+		</div>
+
+		<div class="modal">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+						<h4 class="modal-title">Modal title</h4>
+					</div>
+					<div class="modal-body">
+						<p>One fine body…</p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-primary">Save changes</button>
+					</div>
+				</div>
 			</div>
 		</div>
 
@@ -110,6 +149,7 @@
 	<script src="assets/js/jquery-1.8.3.min.js"></script>
 	<script src="assets/js/bootstrap.min.js"></script>
 	<script src="assets/js/bootstrap-select.js"></script>
+	<script src="assets/js/jquery.form.js"></script>
 	<script src="application.js"></script>
 	<!--[if lt IE 8]>
 		<script src="assets/js/icon-font-ie7.js"></script>

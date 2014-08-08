@@ -2,14 +2,16 @@ gulp = require 'gulp'
 coffee = require 'gulp-coffee'
 watch = require 'gulp-watch'
 
-gulp.task 'coffee', -> gulp
-	.src './application.coffee'
+gulp.task 'coffee', ->
+	gulp
+	.src ['./application.coffee','gulpfile.coffee']
 	.pipe (coffee bare: true)
 	.on 'error', console.log
-	.pipe (gulp.dest './/')
+	.pipe (gulp.dest './')
 
-gulp.task 'watch', -> gulp
-	.src '.application.coffee'
+gulp.task 'watch', ->
+	gulp
+	.src ['./application.coffee','gulpfile.coffee']
 	.pipe watch (files) ->
 		files.pipe(coffee bare: true)
 		.pipe (gulp.dest './')

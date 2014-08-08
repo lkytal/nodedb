@@ -1,21 +1,24 @@
 
 JSON_OK = 0
 JSON_Data = null
+JSON_ERR = 0
 
 addList = () ->
 	#type = $('#type')[0].value
 	#list = ( item[type] for item in JSON_Data )
-	
 	#$('#index').typeahead { source: list}
 
-# 'http://coldfire.qiniudn.com/data.json'
+hideTimer = null
+setHide = () ->
+	clearTimeout hideTimer
+	hideTimeout = setTimeout () ->
+		$('#info').slideUp 600
+	, 2500
 
-jQuery.getJSON 'data.json', (data) ->
-	JSON_OK = 1
-	JSON_Data = data
-	addList()
-	
+rstCount = 0
+
 setTr = (item) ->
+	rstCount += 1
 	"""
 	<tbody>
 		<tr>
@@ -30,10 +33,15 @@ setTr = (item) ->
 	"""
 	
 addResult = () ->
+	if not JSON_OK
+		setTimeout addResult, 400
+		return
+
+	rstCount = 0
 	type = $('#type')[0].value
 	index = $('#index')[0].value
 	
-	$('#info, #space').addClass('hidden')
+	$('#loadding, #space').addClass 'hidden'
 	$('#tablediv').removeClass 'hidden'
 	
 	results = """
@@ -49,29 +57,42 @@ addResult = () ->
 		</tbody>
 		"""
 	
-	results += setTr item for item in JSON_Data when item[type].toLowerCase().match index.toLowerCase()
+	results += setTr item for item in JSON_Data when item? and item[type].toLowerCase().match index.toLowerCase()
 	$('#results').empty().append results
 	
-	$('body,html').animate({ scrollTop: $('#tablediv')[0].offsetTop }, 400)
+	setHide()
+	$('#info').slideDown 400
+	$('#rstnum').html "<p>#{rstCount} result(s) found</p>"
+
+	$('body,html').animate { scrollTop: $('#info')[0].offsetTop - 30 }, 600
 
 doSearch = () ->
-	$('#info').removeClass('hidden')
-	setTimeout doSearch, 400 if not JSON_OK
+	$('#loadding').slideDown 400
 	addResult()
 	
 Run = ($) ->
-	$('body,html').animate({ scrollTop: 0 }, 300)
+	$('body,html').animate { scrollTop: 0 }, 400
+	jQuery
+	.getJSON 'http://lkytal.qiniudn.com/datas.json', (data) ->
+		JSON_OK = 1
+		JSON_Data = data
+		addList()
+	.fail (rqt) ->
+		JSON_ERR = 1
+		$('#search').addClass 'disabled'
+		$('#loadding').addClass 'hidden'
+		$('#loadErr').removeClass 'hidden'
+		$('body,html').animate { scrollTop: $('#main')[0].offsetTop - 200 }, 300
 
 	$('#search').on 'click', (event) -> doSearch()
+	$('#index').focus().on 'keydown', (event) -> doSearch() if event.which == 13
 		
-	$('#type ~ div li').on 'click', (event) ->
-		setTimeout addList, 100
+	$('#type ~ div li').on 'click', (event) -> setTimeout addList, 100
 		
 Setup = ($) ->
 	$ () ->
-		$('#type').removeClass('hidden')
-		$('#index').focus().on 'keydown', (event) ->
-			doSearch() if event.which == 13
+		$('#type').removeClass 'hidden'
+		$('#info, #loadding').hide()
 
 		#Custom Selects
 		$("select.select-list").selectpicker { style: 'btn-primary', menuStyle: 'dropdown-inverse' }
