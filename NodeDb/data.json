@@ -1,7 +1,7 @@
 [
 	{
-		"Cid" : "1-3-1",
-		"Formula" : "H2O",
+		"Cid" : "7-3-1",
+		"Formula" : "c7h14o5n3",
 		"MW" : "18",
 		"Name" : "lin Water",
 		"Size" : "100g",
@@ -29,6 +29,24 @@
 	{
 		"Cid" : "2-2-1",
 		"Formula" : "C3h4o",
+		"MW" : "18",
+		"Name" : "lin Water",
+		"Size" : "100g",
+		"Place" : "R-0-0",
+		"note" : ""
+	},
+	{
+		"Cid" : "2-2-1",
+		"Formula" : "C2h4o",
+		"MW" : "18",
+		"Name" : "lin Water",
+		"Size" : "100g",
+		"Place" : "R-0-0",
+		"note" : ""
+	},
+	{
+		"Cid" : "5-2-1",
+		"Formula" : "C2h4o-na",
 		"MW" : "18",
 		"Name" : "lin Water",
 		"Size" : "100g",

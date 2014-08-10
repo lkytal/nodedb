@@ -61,7 +61,7 @@ Run = function($) {
   $('body,html').animate({
     scrollTop: 0
   }, 400);
-  jQuery.getJSON('http://lkytal.qiniudn.com/datas.json', function(data) {
+  jQuery.getJSON("http://lkytal.qiniudn.com/data.json?id=" + ((new Date()).valueOf()), function(data) {
     JSON_OK = 1;
     JSON_Data = data;
     return addList();
@@ -70,9 +70,10 @@ Run = function($) {
     $('#search').addClass('disabled');
     $('#loadding').addClass('hidden');
     $('#loadErr').removeClass('hidden');
-    return $('body,html').animate({
+    $('body,html').animate({
       scrollTop: $('#main')[0].offsetTop - 200
     }, 300);
+    return $('#static').modal();
   });
   $('#search').on('click', function(event) {
     return doSearch();
@@ -81,6 +82,9 @@ Run = function($) {
     if (event.which === 13) {
       return doSearch();
     }
+  });
+  $('#refresh').on('click', function(e) {
+    return location.reload();
   });
   return $('#type ~ div li').on('click', function(event) {
     return setTimeout(addList, 100);

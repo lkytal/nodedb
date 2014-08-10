@@ -34,35 +34,37 @@
 			</h1>
 		</div>
 
-		<form class="form-horizontal" role="form" method="post" action="http://upload.qiniu.com" enctype="multipart/form-data">
-			<div class="form-group">
-				<label for="token" class="col-sm-2 control-label">Token</label>
-				<div class="col-sm-10">
-					<input type="test" readonly class="form-control" name="token" value="235tt93U09Fou752ETqgI6-KA0P-OL8U1pVBu_V2:llg4A2Low0LPyqDWt-jrHzs6Jk0=:eyJzY29wZSI6ImxreXRhbDpkYXRhLmpzb24iLCJkZWFkbGluZSI6MjI3MTUwODk4OH0=" />
+		<div class="row">
+			<form id="form" class="form-horizontal" role="form" method="post" action="http://upload.qiniu.com" enctype="multipart/form-data">
+				<div class="form-group">
+					<label for="token" class="col-sm-2 control-label">Token</label>
+					<div class="col-sm-10">
+						<input type="test" readonly class="form-control" name="token" value="235tt93U09Fou752ETqgI6-KA0P-OL8U1pVBu_V2:llg4A2Low0LPyqDWt-jrHzs6Jk0=:eyJzY29wZSI6ImxreXRhbDpkYXRhLmpzb24iLCJkZWFkbGluZSI6MjI3MTUwODk4OH0=" />
+					</div>
 				</div>
-			</div>
-			<div class="form-group">
-				<label for="key" class="col-sm-2 control-label">Key</label>
-				<div class="col-sm-10">
-					<input type="text" readonly class="form-control" name="key" value="data.json">
+				<div class="form-group">
+					<label for="key" class="col-sm-2 control-label">Key</label>
+					<div class="col-sm-10">
+						<input type="text" readonly class="form-control" name="key" value="data.json">
+					</div>
 				</div>
-			</div>
-			<div class="form-group hidden">
-				<label for="x:username" class="col-sm-2 control-label">UserName</label>
-				<div class="col-sm-10">
-					<input type="text" readonly class="form-control" name="x:username" value="">
+				<div class="form-group hidden">
+					<label for="x:username" class="col-sm-2 control-label">UserName</label>
+					<div class="col-sm-10">
+						<input type="text" readonly class="form-control" name="x:username" value="">
+					</div>
 				</div>
-			</div>
-			<div class="form-group">
-				<label for="bucket" class="col-sm-2 control-label">File</label>
-				<div class="col-sm-8">
-					<input type="file" name="file" >
+				<div class="form-group">
+					<label for="bucket" class="col-sm-2 control-label">File</label>
+					<div class="col-sm-8">
+						<input type="file" name="file" >
+					</div>
+					<div class="col-sm-2">
+						<button type="submit" id="upload" class="btn btn-block btn-primary">Upload</button>
+					</div>
 				</div>
-				<div class="col-sm-2">
-					<button type="submit" id="upload" class="btn btn-block btn-primary">Upload</button>
-				</div>
-			</div>
-		</form>
+			</form>
+		</div>
 	</div>
 
 	<br />
@@ -96,20 +98,21 @@
 		</div>
 	</footer>
 	<script src="assets/js/jquery-1.8.3.min.js"></script>
+	<script type="text/javascript" src="assets/js/jquery.form.js"></script>
 	<script>
 		function upload (e)
 		{
 			e.preventDefault();
 
-			$(this).ajaxSubmit({
+			$('#form').ajaxSubmit({
 				success: function (data) {
                 	alert(data);
             	}
 			});
 		}
 
-		//$('form').on('submit', upload);
-		//$('#upload').on('click', upload);
+		$('form').on('submit', upload);
+		$('#upload').on('click', upload);
 	</script>
 	<!--[if lte IE 6]>
 		<script type="text/javascript" src="assets/js/bootstrap-ie6.js"></script>

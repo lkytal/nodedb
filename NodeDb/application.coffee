@@ -73,7 +73,7 @@ doSearch = () ->
 Run = ($) ->
 	$('body,html').animate { scrollTop: 0 }, 400
 	jQuery
-	.getJSON 'http://lkytal.qiniudn.com/datas.json', (data) ->
+	.getJSON "http://lkytal.qiniudn.com/data.json?id=#{(new Date()).valueOf()}", (data) ->
 		JSON_OK = 1
 		JSON_Data = data
 		addList()
@@ -83,10 +83,12 @@ Run = ($) ->
 		$('#loadding').addClass 'hidden'
 		$('#loadErr').removeClass 'hidden'
 		$('body,html').animate { scrollTop: $('#main')[0].offsetTop - 200 }, 300
+		$('#static').modal()
 
 	$('#search').on 'click', (event) -> doSearch()
 	$('#index').focus().on 'keydown', (event) -> doSearch() if event.which == 13
-		
+	$('#refresh').on 'click', (e) -> location.reload()
+
 	$('#type ~ div li').on 'click', (event) -> setTimeout addList, 100
 		
 Setup = ($) ->

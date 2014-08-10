@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang='zh-CN'>
+
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +10,8 @@
 
 	<link href='assets/css/bootstrap-readable.css' rel='stylesheet'>
 	<link href="assets/css/flat-ui.css" rel="stylesheet">
+	<link href="assets/css/bootstrap-modal-bs3patch.css" rel="stylesheet" />
+	<link href="assets/css/bootstrap-modal.css" rel="stylesheet" />
 	<link href='main.css' rel='stylesheet'>
 
 	<!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
@@ -24,10 +27,11 @@
 	<![endif]-->
 
 </head>
+
 <body>
 	<div class="container">
 		<div class="center">
-			<img src="assets/images/illustrations/retina.png" class="xshide big-retina-illustration">
+			<img src="assets/images/icons/png/Retina-Ready.png" class="xshide big-retina-illustration">
 
 			<h1 class="demo-logo">
 				Chem Finder
@@ -49,7 +53,7 @@
 				<span class="input-group-btn">
 					<button id="search" type="button" class="btn btn-primary">
 						<span class="glyphicon glyphicon-search"></span>
-						Search
+					Search
 					</button>
 				</span>
 			</div>
@@ -63,7 +67,7 @@
 			<p>Refresh if loading too long.</p>
 		</div>
 
-		<div id="loadErr" class="alert alert-dismissable alert-danger hidden">
+		<div id="loadErr" class="alert alert-dismissable alert-danger fade in hidden">
 			<button type="button" class="close" data-dismiss="alert">×</button>
 			<h4>Load Error</h4>
 			<p>Cannot load data file, please refresh this page.</p>
@@ -81,24 +85,6 @@
 			</div>
 			<div class="panel-body">
 				Cannot load data file, please refresh this page.
-			</div>
-		</div>
-
-		<div class="modal">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-						<h4 class="modal-title">Modal title</h4>
-					</div>
-					<div class="modal-body">
-						<p>One fine body…</p>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-						<button type="button" class="btn btn-primary">Save changes</button>
-					</div>
-				</div>
 			</div>
 		</div>
 
@@ -126,8 +112,7 @@
 					<h3 class="footer-title">Author</h3>
 					<p>
 						Design &amp; Support by <em>Coldfire</em>
-						<br />
-						CopyRight 2014+
+						<br />CopyRight 2014+
 					</p>
 				</div>
 				<div class="col-md-5 col-xs-8">
@@ -146,11 +131,27 @@
 			</div>
 		</div>
 	</footer>
+
+	<div id="static" class="modal fade" tabindex="-1" data-backdrop="static" data-keyboard="false" style="display: none;">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+			<h5 class="modal-title">Load Data Error</h5>
+		</div>
+		<div class="modal-body">
+			<p>Cannot load data file, please refresh this page.</p>
+		</div>
+		<div class="modal-footer">
+			<!--button type="button" data-dismiss="modal" class="btn btn-default">Cancel</button-->
+			<button id='refresh' type="button" data-dismiss="modal" class="btn btn-primary">Refresh</button>
+		</div>
+	</div>
+
 	<script src="assets/js/jquery-1.8.3.min.js"></script>
 	<script src="assets/js/bootstrap.min.js"></script>
 	<script src="assets/js/bootstrap-select.js"></script>
-	<script src="assets/js/jquery.form.js"></script>
-	<script src="application.js"></script>
+	<script defer src="application.js"></script>
+	<script defer src="assets/js/bootstrap-modalmanager.js"></script>
+	<script defer src="assets/js/bootstrap-modal.js"></script>
 	<!--[if lt IE 8]>
 		<script src="assets/js/icon-font-ie7.js"></script>
 	<![endif]-->
@@ -158,4 +159,5 @@
 		<script type="text/javascript" src="assets/js/bootstrap-ie6.js"></script>
 	<![endif]-->
 </body>
+
 </html>
