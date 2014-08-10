@@ -66,19 +66,25 @@ Run = function($) {
     JSON_Data = data;
     return addList();
   }).fail(function(rqt) {
-    JSON_ERR = 1;
-    $('#search').addClass('disabled');
-    $('#loadding').addClass('hidden');
-    $('#loadErr').removeClass('hidden');
-    $('body,html').animate({
-      scrollTop: $('#main')[0].offsetTop - 200
-    }, 300);
-    return $('#static').modal();
+    return jQuery.getJSON("data.json?id=" + ((new Date()).valueOf()), function(data) {
+      JSON_OK = 1;
+      JSON_Data = data;
+      return addList();
+    }).fail(function(rqt) {
+      JSON_ERR = 1;
+      $('#search').addClass('disabled');
+      $('#loadding').addClass('hidden');
+      $('#loadErr').removeClass('hidden');
+      $('body,html').animate({
+        scrollTop: $('#main')[0].offsetTop - 200
+      }, 300);
+      return $('#static').modal();
+    });
   });
   $('#search').on('click', function(event) {
     return doSearch();
   });
-  $('#index').focus().on('keydown', function(event) {
+  $('#index').val('').focus().on('keydown', function(event) {
     if (event.which === 13) {
       return doSearch();
     }
@@ -107,7 +113,6 @@ Setup = function($) {
     $(".btn-group").on('click', "a", function() {
       return $(this).siblings().removeClass("active").end().addClass("active");
     });
-    window.prettyPrint && prettyPrint();
     return Run(jQuery);
   });
 };

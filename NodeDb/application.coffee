@@ -78,15 +78,21 @@ Run = ($) ->
 		JSON_Data = data
 		addList()
 	.fail (rqt) ->
-		JSON_ERR = 1
-		$('#search').addClass 'disabled'
-		$('#loadding').addClass 'hidden'
-		$('#loadErr').removeClass 'hidden'
-		$('body,html').animate { scrollTop: $('#main')[0].offsetTop - 200 }, 300
-		$('#static').modal()
+		jQuery
+		.getJSON "data.json?id=#{(new Date()).valueOf()}", (data) ->
+			JSON_OK = 1
+			JSON_Data = data
+			addList()
+		.fail (rqt) ->
+			JSON_ERR = 1
+			$('#search').addClass 'disabled'
+			$('#loadding').addClass 'hidden'
+			$('#loadErr').removeClass 'hidden'
+			$('body,html').animate { scrollTop: $('#main')[0].offsetTop - 200 }, 300
+			$('#static').modal()
 
 	$('#search').on 'click', (event) -> doSearch()
-	$('#index').focus().on 'keydown', (event) -> doSearch() if event.which == 13
+	$('#index').val('').focus().on 'keydown', (event) -> doSearch() if event.which == 13
 	$('#refresh').on 'click', (e) -> location.reload()
 
 	$('#type ~ div li').on 'click', (event) -> setTimeout addList, 100
@@ -107,8 +113,6 @@ Setup = ($) ->
 
 		$(".btn-group").on 'click', "a", () ->
 			$(this).siblings().removeClass("active").end().addClass("active")
-
-		window.prettyPrint && prettyPrint()
 
 		Run jQuery
 

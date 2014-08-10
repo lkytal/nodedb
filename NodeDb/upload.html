@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang='zh-CN'>
+
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,10 +24,11 @@
 		<link rel="stylesheet" type="text/css" href="assets/css/ie6.css">
 	<![endif]-->
 </head>
+
 <body>
 	<div class="container">
 		<div class="center">
-			<img src="assets/images/illustrations/retina.png" class="xshide big-retina-illustration">
+			<img src="assets/images/icons/png/Retina-Ready.png" class="xshide big-retina-illustration">
 
 			<h1 class="demo-logo">
 				Chem Finder
@@ -38,11 +40,11 @@
 			<form id="form" class="form-horizontal" role="form" method="post" action="http://upload.qiniu.com" enctype="multipart/form-data">
 				<div class="form-group">
 					<label for="token" class="col-sm-2 control-label">Token</label>
-					<div class="col-sm-10">
+					<div class="col-sm-9">
 						<input type="test" readonly class="form-control" name="token" value="235tt93U09Fou752ETqgI6-KA0P-OL8U1pVBu_V2:llg4A2Low0LPyqDWt-jrHzs6Jk0=:eyJzY29wZSI6ImxreXRhbDpkYXRhLmpzb24iLCJkZWFkbGluZSI6MjI3MTUwODk4OH0=" />
 					</div>
 				</div>
-				<div class="form-group">
+				<div class="form-group hidden">
 					<label for="key" class="col-sm-2 control-label">Key</label>
 					<div class="col-sm-10">
 						<input type="text" readonly class="form-control" name="key" value="data.json">
@@ -54,15 +56,36 @@
 						<input type="text" readonly class="form-control" name="x:username" value="">
 					</div>
 				</div>
+
 				<div class="form-group">
+					<input id="upfile" type="file" name="file" style="display:none">
 					<label for="bucket" class="col-sm-2 control-label">File</label>
-					<div class="col-sm-8">
-						<input type="file" name="file" >
+					<div class="input-group col-sm-9 col-xs-offset-lt">
+						<input id="index" type="text" class="form-control">
+						<span class="input-group-btn">
+							<button class="btn btn-primary" onclick="$('#upfile').click();">
+								<span class="glyphicon glyphicon-file"></span>
+								Select File
+							</button>
+						</span>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="col-sm-3 col-sm-offset-8">
+						<button type="submit" id="upload" class="btn btn-block btn-primary">Upload</button>
+					</div>
+				</div>
+
+				<!--div class="form-group">
+					<label for="bucket" class="col-sm-2 control-label">File</label>
+					<div class="col-sm-7">
+						<input type="file" name="file">
 					</div>
 					<div class="col-sm-2">
 						<button type="submit" id="upload" class="btn btn-block btn-primary">Upload</button>
 					</div>
-				</div>
+				</div-->
 			</form>
 		</div>
 	</div>
@@ -77,8 +100,7 @@
 					<h3 class="footer-title">Author</h3>
 					<p>
 						Design &amp; Support by <em>Coldfire</em>
-						<br />
-						CopyRight 2014+
+						<br />CopyRight 2014+
 					</p>
 				</div>
 				<div class="col-md-5 col-xs-8">
@@ -98,24 +120,28 @@
 		</div>
 	</footer>
 	<script src="assets/js/jquery-1.8.3.min.js"></script>
-	<script type="text/javascript" src="assets/js/jquery.form.js"></script>
+	<script defer type="text/javascript" src="assets/js/jquery.form.js"></script>
 	<script>
-		function upload (e)
-		{
+		function upload(e) {
 			e.preventDefault();
 
 			$('#form').ajaxSubmit({
 				success: function (data) {
-                	alert(data);
-            	}
+					alert(data);
+				}
 			});
 		}
 
 		$('form').on('submit', upload);
 		$('#upload').on('click', upload);
+
+		$('#upfile').change(function() {
+			$('#index').val($(this).val());
+		});
 	</script>
 	<!--[if lte IE 6]>
 		<script type="text/javascript" src="assets/js/bootstrap-ie6.js"></script>
 	<![endif]-->
 </body>
+
 </html>
