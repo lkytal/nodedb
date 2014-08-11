@@ -10,9 +10,9 @@
 
 	<link href='assets/css/bootstrap-readable.css' rel='stylesheet'>
 	<link href="assets/css/flat-ui.css" rel="stylesheet">
-	<link href="assets/css/bootstrap-modal-bs3patch.css" rel="stylesheet" />
-	<link href="assets/css/bootstrap-modal.css" rel="stylesheet" />
 	<link href='main.css' rel='stylesheet'>
+
+	<link rel="prerender" href="/upload.html" />
 
 	<!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
 	<!--[if lt IE 9]>
@@ -117,10 +117,10 @@
 				</div>
 				<div class="col-md-5 col-xs-8">
 					<div class="footer-banner">
-						<h3 class="footer-title">Contact me</h3>
+						<h3 class="footer-title">Goto</h3>
 						<ul>
 							<li>
-								<a href="#">Renren</a>
+								<a href="/upload.html">Upload Page</a>
 							</li>
 							<li>
 								<a href="#">Email</a>
@@ -132,26 +132,30 @@
 		</div>
 	</footer>
 
-	<div id="static" class="modal fade" tabindex="-1" data-backdrop="static" data-keyboard="false" style="display: none;">
-		<div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-			<h5 class="modal-title">Load Data Error</h5>
-		</div>
-		<div class="modal-body">
-			<p>Cannot load data file, please refresh this page.</p>
-		</div>
-		<div class="modal-footer">
-			<!--button type="button" data-dismiss="modal" class="btn btn-default">Cancel</button-->
-			<button id='refresh' type="button" data-dismiss="modal" class="btn btn-primary">Refresh</button>
+	<div id="static" class="modal fade" tabindex="-1" role="dialog" data-backdrop="static">
+		<div class="modal-dialog modal-dialog-center">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">
+						<span aria-hidden="true">&times;</span>
+						<span class="sr-only">Close</span>
+					</button>
+					<h4 class="modal-title">Load Data Error</h4>
+				</div>
+				<div class="modal-body">
+					<p id="msg">Cannot load data file, please refresh this page.</p>
+				</div>
+				<div class="modal-footer">
+					<button type="ok" class="btn btn-primary" data-dismiss="modal">Refresh</button>
+				</div>
+			</div>
 		</div>
 	</div>
 
 	<script src="assets/js/jquery-1.8.3.min.js"></script>
 	<script src="assets/js/bootstrap.min.js"></script>
 	<script src="assets/js/bootstrap-select.js"></script>
-	<script defer src="application.js"></script>
-	<script defer src="assets/js/bootstrap-modalmanager.js"></script>
-	<script defer src="assets/js/bootstrap-modal.js"></script>
+	<script src="application.js"></script>
 	<!--[if lt IE 8]>
 		<script src="assets/js/icon-font-ie7.js"></script>
 	<![endif]-->

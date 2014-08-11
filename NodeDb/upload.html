@@ -12,6 +12,8 @@
 	<link href="assets/css/flat-ui.css" rel="stylesheet">
 	<link href='main.css' rel='stylesheet'>
 
+	<link rel="prerender" href="/index.html" />
+
 	<!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
 	<!--[if lt IE 9]>
 		<script src="assets/js/html5shiv.js"></script>
@@ -76,16 +78,6 @@
 						<button type="submit" id="upload" class="btn btn-block btn-primary">Upload</button>
 					</div>
 				</div>
-
-				<!--div class="form-group">
-					<label for="bucket" class="col-sm-2 control-label">File</label>
-					<div class="col-sm-7">
-						<input type="file" name="file">
-					</div>
-					<div class="col-sm-2">
-						<button type="submit" id="upload" class="btn btn-block btn-primary">Upload</button>
-					</div>
-				</div-->
 			</form>
 		</div>
 	</div>
@@ -105,10 +97,10 @@
 				</div>
 				<div class="col-md-5 col-xs-8">
 					<div class="footer-banner">
-						<h3 class="footer-title">Contact me</h3>
+						<h3 class="footer-title">Goto</h3>
 						<ul>
 							<li>
-								<a href="#">Renren</a>
+								<a href="/index.html">Search Page</a>
 							</li>
 							<li>
 								<a href="#">Email</a>
@@ -119,26 +111,73 @@
 			</div>
 		</div>
 	</footer>
+
+	<div id="static" class="modal fade" tabindex="-1" role="dialog" data-backdrop="static">
+		<div class="modal-dialog modal-dialog-center">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">
+						<span aria-hidden="true">&times;</span>
+						<span class="sr-only">Close</span>
+					</button>
+					<h4 class="modal-title" id="title">Uploading...</h4>
+				</div>
+				<div class="modal-body">
+					<div id="msg">
+						<span class="glyphicon glyphicon-ok"></span>
+						Data file upload success.
+					</div>
+					<div id="floatingCirclesG">
+						<div class="f_circleG" id="frotateG_01"></div>
+						<div class="f_circleG" id="frotateG_02"></div>
+						<div class="f_circleG" id="frotateG_03"></div>
+						<div class="f_circleG" id="frotateG_04"></div>
+						<div class="f_circleG" id="frotateG_05"></div>
+						<div class="f_circleG" id="frotateG_06"></div>
+						<div class="f_circleG" id="frotateG_07"></div>
+						<div class="f_circleG" id="frotateG_08"></div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="ok" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<script src="assets/js/jquery-1.8.3.min.js"></script>
-	<script defer type="text/javascript" src="assets/js/jquery.form.js"></script>
+	<script defer src="assets/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="assets/js/jquery.form.js"></script>
 	<script>
 		function upload(e) {
 			e.preventDefault();
 
+			$('#static').modal();
+
 			$('#form').ajaxSubmit({
 				success: function (data) {
-					alert(data);
+					setTimeout(function (){
+						$('#floatingCirclesG').hide();
+						$('#msg').show(100);
+						$('#title').text('Upload Success');
+					}, 1200);
 				}
 			});
 		}
 
-		$('form').on('submit', upload);
-		$('#upload').on('click', upload);
+		$(function() {
+			$('#msg').hide();
 
-		$('#upfile').change(function() {
-			$('#index').val($(this).val());
+			$('form').on('submit', upload);
+			$('#upload').on('click', upload);
+
+			$('#upfile').change(function () {
+				$('#index').val($(this).val());
+			});
 		});
 	</script>
+
+
 	<!--[if lte IE 6]>
 		<script type="text/javascript" src="assets/js/bootstrap-ie6.js"></script>
 	<![endif]-->
